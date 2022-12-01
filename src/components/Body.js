@@ -1,5 +1,4 @@
 import Card from "./Card"
-import styled from "styled-components"
 export default function Body(){
     const cards = [
         { question: "___ é o recurso mais importante numa situação de crise.", answer: "Água" },
@@ -13,7 +12,7 @@ export default function Body(){
     ]
     return (
         <>
-       {cards.map((i) => <Card n={cards.indexOf(i)+1}/>)}
+       {cards.map((i) => <Card key={i} q={i.question} a={i.answer} n={cards.indexOf(i)+1}/>)}
        </>
     )
 }
