@@ -8,6 +8,7 @@ import quase from '../assets/img/icone_quase.png'
 export default function Card(props) {
     const [icone, setIcone] = React.useState('')
     let [cor, setCor] = React.useState('')
+    let [data, setData] = React.useState('')
     const erros = props.erros
     const setErros = props.setErros
     function abrir(){
@@ -23,44 +24,47 @@ export default function Card(props) {
         setCor('#2FBE34')
         setEstado('terminado')
         setErros(erros+1)
+        setData("zap-icon")
       }
       if(x==='quase'){
         setIcone(quase)
         setCor('#FF922E')
         setEstado('terminado')
         setErros(erros+1)
+        setData("partial-icon")
       }
       if(x==='erro'){
         setIcone(erro)
         setCor('#FF3030')
         setEstado('terminado')
         setErros(erros+1)
+        setData("no-icon")
       }
   }
     const [estado, setEstado] = React.useState('fechado')
     if(estado==='fechado'){return (
 
-        <Fechada>
-            <p>Pergunta {props.n}</p>
-            <img  onClick={abrir} src={play}/>
+        <Fechada data-test="flashcard">
+            <p data-test="flashcard-text">Pergunta {props.n}</p>
+            <img data-test="play-btn" onClick={abrir} src={play}/>
         </Fechada>
         
     )}
     if(estado==='aberto'){
         return(
-            <Aberta>{props.q}<img onClick={verResposta} src={virar}/></Aberta>
+            <Aberta data-test="flashcard"><span data-test="flashcard-text">{props.q}</span><img data-test="turn-btn" onClick={verResposta} src={virar}/></Aberta>
         )
     }
     if(estado==='virado'){
         return(
-            <Aberta>{props.a}<ContainerB><button onClick={() => terminar('erro')}>Não lembrei</button><button onClick={() => terminar('quase')}>Quase não lembrei</button> <button onClick={() => terminar('certo')}>Zap!</button></ContainerB></Aberta> 
+            <Aberta data-test="flashcard"><span data-test="flashcard-text">{props.a}</span><ContainerB><button onClick={() => terminar('erro')}>Não lembrei</button><button onClick={() => terminar('quase')}>Quase não lembrei</button> <button onClick={() => terminar('certo')}>Zap!</button></ContainerB></Aberta> 
         )
     }
     if(estado==='terminado'){
       return(
-        <Terminada cor={cor}>
-        <p>Pergunta {props.n}</p>
-        <img src={icone}/>
+        <Terminada data-test="flashcard" cor={cor}>
+        <p data-test="flashcard-text">Pergunta {props.n}</p>
+        <img data-test={data} src={icone}/>
     </Terminada> 
       )
   }
