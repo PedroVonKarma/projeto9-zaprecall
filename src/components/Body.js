@@ -1,5 +1,5 @@
 import Card from "./Card"
-export default function Body(){
+export default function Body(props){
     const cards = [
         { question: "___ é o recurso mais importante numa situação de crise.", answer: "Água" },
         { question: "___ é essencial para garantirmos água, comida e aquecimento.", answer: "Saber fazer fogo" },
@@ -12,7 +12,7 @@ export default function Body(){
     ]
     return (
         <>
-       {cards.map((i) => <Card key={i} q={i.question} a={i.answer} n={cards.indexOf(i)+1}/>)}
+       {cards.map((i) => <Card erros={props.erros} setErros={props.setErros} key={i.answer} q={i.question} a={i.answer} n={cards.indexOf(i)+1}/>)}
        </>
     )
 }

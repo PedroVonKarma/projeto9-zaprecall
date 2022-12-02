@@ -4,12 +4,13 @@ import Body from "./components/Body";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 export default function App(){
+  const [erros, setErros] = React.useState(0)
   return (
     
     <Screen>
       <Header/>
-      <Body/>
-      <Footer/>
+      <Body erros={erros} setErros={setErros}/>
+      <Footer err={erros}/>
     </Screen>
     
   )

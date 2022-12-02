@@ -1,8 +1,8 @@
 import styled from "styled-components"
-export default function Footer(){
+export default function Footer(props){
     return (
         <Fut>
-            0/8 CONCLUÍDOS
+            {props.err}/8 CONCLUÍDOS
         </Fut>
     )
 }
